@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/webshop/static/css/main.c87bcac7.chunk.css",
-    "main.js": "/webshop/static/js/main.f50ec3bc.chunk.js",
-    "main.js.map": "/webshop/static/js/main.f50ec3bc.chunk.js.map",
+    "main.js": "/webshop/static/js/main.acce7f5e.chunk.js",
+    "main.js.map": "/webshop/static/js/main.acce7f5e.chunk.js.map",
     "runtime-main.js": "/webshop/static/js/runtime-main.7360cb70.js",
     "runtime-main.js.map": "/webshop/static/js/runtime-main.7360cb70.js.map",
     "static/js/2.8d49a798.chunk.js": "/webshop/static/js/2.8d49a798.chunk.js",
     "static/js/2.8d49a798.chunk.js.map": "/webshop/static/js/2.8d49a798.chunk.js.map",
     "index.html": "/webshop/index.html",
-    "precache-manifest.b5c9d0076f002cc9e35d228751d1a9f2.js": "/webshop/precache-manifest.b5c9d0076f002cc9e35d228751d1a9f2.js",
+    "precache-manifest.5e8f3be009396e115af165d8196a9588.js": "/webshop/precache-manifest.5e8f3be009396e115af165d8196a9588.js",
     "service-worker.js": "/webshop/service-worker.js",
     "static/css/main.c87bcac7.chunk.css.map": "/webshop/static/css/main.c87bcac7.chunk.css.map",
     "static/js/2.8d49a798.chunk.js.LICENSE.txt": "/webshop/static/js/2.8d49a798.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.7360cb70.js",
     "static/js/2.8d49a798.chunk.js",
     "static/css/main.c87bcac7.chunk.css",
-    "static/js/main.f50ec3bc.chunk.js"
+    "static/js/main.acce7f5e.chunk.js"
   ]
 }
