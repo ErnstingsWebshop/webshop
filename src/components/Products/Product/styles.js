@@ -23,7 +23,8 @@ export default makeStyles(() => ({
     chip: {
         marginRight: 'auto',
         marginLeft: '7px',
-        fontSize: '0.9125rem'
+        fontSize: '0.9125rem',
+        backgroundColor: '#C3DCAC'
     },
     iconImage: {
         width: '1em',

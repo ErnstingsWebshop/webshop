@@ -20,6 +20,9 @@ export default makeStyles(() => ({
         justifyContent: 'space-between',
         height: 50,
     },
+    chip: {
+        backgroundColor: '#C3DCAC'
+    },
     buttons: {
         display: 'flex',
         alignItems: 'center',
