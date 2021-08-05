@@ -24,7 +24,7 @@ export default makeStyles(() => ({
         marginRight: 'auto',
         marginLeft: '7px',
         fontSize: '0.9125rem',
-        backgroundColor: '#C3DCAC'
+        backgroundColor: '#C3DCAC !important'
     },
     iconImage: {
         width: '1em',
