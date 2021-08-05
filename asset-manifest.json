@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/webshop/static/css/main.c87bcac7.chunk.css",
+    "main.css": "/webshop/static/css/main.3641f622.chunk.css",
     "main.js": "/webshop/static/js/main.97ece36c.chunk.js",
     "main.js.map": "/webshop/static/js/main.97ece36c.chunk.js.map",
     "runtime-main.js": "/webshop/static/js/runtime-main.7360cb70.js",
@@ -8,9 +8,9 @@
     "static/js/2.8d49a798.chunk.js": "/webshop/static/js/2.8d49a798.chunk.js",
     "static/js/2.8d49a798.chunk.js.map": "/webshop/static/js/2.8d49a798.chunk.js.map",
     "index.html": "/webshop/index.html",
-    "precache-manifest.a36c882621df9d80ab156196542a8497.js": "/webshop/precache-manifest.a36c882621df9d80ab156196542a8497.js",
+    "precache-manifest.d6d9c5a531c90e05b1e3b3c8fcd9ff7a.js": "/webshop/precache-manifest.d6d9c5a531c90e05b1e3b3c8fcd9ff7a.js",
     "service-worker.js": "/webshop/service-worker.js",
-    "static/css/main.c87bcac7.chunk.css.map": "/webshop/static/css/main.c87bcac7.chunk.css.map",
+    "static/css/main.3641f622.chunk.css.map": "/webshop/static/css/main.3641f622.chunk.css.map",
     "static/js/2.8d49a798.chunk.js.LICENSE.txt": "/webshop/static/js/2.8d49a798.chunk.js.LICENSE.txt",
     "static/media/Ernstings_family.png": "/webshop/static/media/Ernstings_family.ca1453fe.png",
     "static/media/icon.svg": "/webshop/static/media/icon.28a304ac.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.7360cb70.js",
     "static/js/2.8d49a798.chunk.js",
-    "static/css/main.c87bcac7.chunk.css",
+    "static/css/main.3641f622.chunk.css",
     "static/js/main.97ece36c.chunk.js"
   ]
 }
