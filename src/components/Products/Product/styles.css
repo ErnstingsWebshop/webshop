@@ -1,3 +1,6 @@
 .MuiCardContent-root {
     height: 14vh;
 }
+.MuiChip-root{
+    background-color:#C3DCAC;
+}
