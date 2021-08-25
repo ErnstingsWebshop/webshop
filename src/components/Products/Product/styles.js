@@ -9,7 +9,7 @@ export default makeStyles(() => ({
         height: 250,
         paddingTop: '56.25%', // 16:9
         backgroundRepeat: 'no-repeat',
-        backgroundSize: 175,
+        backgroundSize: "contain",
     },
     cardActions: {
         display: 'flex',
