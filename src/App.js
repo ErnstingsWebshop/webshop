@@ -41,8 +41,9 @@ const App = () => {
 
     const fetchProducts = async () => {
         const {data} = await commerce.products.list({
-            limit:70,
+            limit:150,
         });
+        shuffleProducts(data);
         setProducts(data);
     };
 
@@ -59,8 +60,9 @@ const App = () => {
         },[]);
         const {data} = await commerce.products.list({
             category_slug: keyArr,
-            limit:70,
+            limit:150,
         });
+        shuffleProducts(data);
         setProducts(data);
     };
 
@@ -104,6 +106,24 @@ const App = () => {
         } catch (error) {
             setErrorMessage(error.data.error.message);
         }
+    };
+
+    const shuffleProducts = (products) => {
+        var currentIndex = products.length,  randomIndex;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [products[currentIndex], products[randomIndex]] = [
+                products[randomIndex], products[currentIndex]];
+        }
+
+        return products;
     };
 
     useEffect(() => {
