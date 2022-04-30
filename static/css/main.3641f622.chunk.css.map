@@ -1,1 +1,0 @@
-{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,qBACI,WACJ,CACA,cACI,wBACJ","file":"main.3641f622.chunk.css","sourcesContent":[".MuiCardContent-root {\n    height: 14vh;\n}\n.MuiChip-root{\n    background-color:#C3DCAC;\n}\n"]}
