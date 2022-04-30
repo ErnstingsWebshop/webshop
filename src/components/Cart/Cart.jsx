@@ -14,13 +14,25 @@ const Cart = ({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) => {
     const [open, setOpen] = React.useState(false);
     const handleEmptyCart = () => onEmptyCart();
     const [products, setProducts] = useState([]);
+    const [subtotal, setSubtotal] = useState(0);
 
     const renderProducts = async () => {
         if (cart.line_items) {
             const data = await Promise.all(cart.line_items.map(async (item) => {
-                return commerce.products.retrieve(item.product_id);
+               return item;
+             //   return commerce.products.retrieve(item.product_id);
             }));
             setProducts(data);
+        }
+    };
+    const calcSubtotal = async () => {
+        var subtotal = 0;
+        if (cart.line_items) {
+            cart.line_items.forEach((item) => {
+                subtotal+=item.price.raw*item.quantity;
+                //   return commerce.products.retrieve(item.product_id);
+            });
+            setSubtotal(subtotal);
         }
     };
     const renderEmptyCart = () => (
@@ -37,6 +49,7 @@ const Cart = ({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) => {
 
     useEffect(() => {
         renderProducts();
+        calcSubtotal();
     }, cart.line_items);
 
     if (!cart.line_items) return 'Loading';
@@ -52,7 +65,7 @@ const Cart = ({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) => {
                 ))}
             </Grid>
             <div className={classes.cardDetails}>
-                <Typography variant="h4">Subtotal: {cart.subtotal.formatted_with_symbol}</Typography>
+                <Typography variant="h4">Subtotal: {subtotal}€</Typography>
                 <div>
                     <Button className={classes.emptyButton} size="large" type="button" variant="contained"
                             color="primary" component={Link} to="/webshop">Back</Button>
@@ -82,9 +95,15 @@ const Cart = ({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) => {
             }
             return acc
         }, 0);
-        axios.post("https://webhooks.mongodb-realm.com/api/client/v2.0/app/webapplication-yoqap/service/PostData/incoming_webhook/postParticipantData",
-            {
+
+        for (var i=0;i<cart.total_unique_items;i++) {
+
+            var jsonObj = {
                 participant_id: window.results.id,
+                group_id: window.results.group,
+                product_id:cart.line_items[i].id,
+                product_qnty:cart.line_items[i].quantity,
+                product_price:cart.line_items[i].price.raw,
                 startTime: window.results.startTime,
                 timePassedSec: (new Date().getTime() - window.results.startTime.getTime()) / 1000,
                 products: cart.line_items,
@@ -93,9 +112,18 @@ const Cart = ({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) => {
                 total_items_sustainable: sustainableItemCounter,
                 subtotal_sustainable: sustainableItemPrice,
                 subtotal: cart.subtotal.raw
-            }).then(res => {
-            console.log(res);
-        });
+            };
+            /*cart.line_items.forEach(item => {
+                jsonObj["product_"+item.index()+"_id"]=item.id;
+                jsonObj["product_"+item.index()+"quantity"]=item.quantity;
+                jsonObj["product_"+item.index()+"_price"]=item.price.raw;
+            })*/
+
+            axios.post("https://webhooks.mongodb-realm.com/api/client/v2.0/app/webapplication-yoqap/service/PostData/incoming_webhook/postParticipantData",
+                jsonObj).then(res => {
+                console.log(res);
+            });
+        }
         handleClickOpen();
         //setOpen(true);
         // });

@@ -14,7 +14,7 @@ export default function ThankYou({open}) {
                 <DialogTitle id="form-dialog-title">Thanks for participation!</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-            You can close this window and proceed with the survey.
+            You can close this window and proceed with the survey. Please go back to the survey and enter the following code in the survey tool:<br/><br/><strong>IMGGE49</strong><br/>
                     </DialogContentText>
                 </DialogContent>
             </Dialog>

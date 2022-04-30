@@ -22,7 +22,8 @@ const Product = ({product, onAddToCart}) => {
     );
 
     const renderBanner = () => (
-        <Chip className={classes.chip} icon={svgIcon}  label="Sustainable"/>
+        <span className="tooltip"><Chip className={classes.chip} icon={svgIcon} label="Sustainable"/> <span
+            className="tooltiptext">For products labelled as “sustainable”, certified, organic materials are used.</span></span>
     );
     /* <Buton aria-label="Add to Cart" onClick={handleAddToCart}>
                     <AddShoppingCart/>
@@ -38,14 +39,14 @@ const Product = ({product, onAddToCart}) => {
                 </Button>*/
     return (
         <Card className={classes.root}>
-            <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
+            <CardMedia className={classes.media} image={product.image.url} title={product.name}/>
             <CardContent>
                 <div className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
                         {product.name}
                     </Typography>
                     <Typography gutterBottom variant="h5" component="h2">
-                        ${product.price.formatted}
+                        {product.price.formatted}€
                     </Typography>
                 </div>
                 <Typography dangerouslySetInnerHTML={{__html: product.description}} variant="body2"

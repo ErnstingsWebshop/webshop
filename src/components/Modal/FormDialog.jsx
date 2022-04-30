@@ -10,6 +10,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 export default function FormDialog({open, setOpen}) {
 
     const [text, setText] = useState("");
+    const [textGroup, setTextGroup] = useState("");
+    const [errorGroup, setErrorGroup] = useState(text.length <=  4 && text.length >= 1);
+    const [helperTextGroup, setHelperTextGroup] = useState(text.length <=  4 && text.length >= 1? 'ID is too short' : ' ');
+
     const [error, setError] = useState(text.length <=  4 && text.length >= 1);
     const [helperText, setHelperText] = useState(text.length <=  4 && text.length >= 1? 'ID is too short' : ' ');
 
@@ -18,12 +22,19 @@ export default function FormDialog({open, setOpen}) {
     };
 
     const handleClose = () => {
-        if(text.length < 10) {
+        if(text.length < 10 || textGroup.length !== 6) {
+            if(text.length < 10){
             setError(true);
-            setHelperText("Please enter your correct ID");
-        }
+            setHelperText("Please enter your correct ID.");
+            }
+            if(textGroup.length !== 6){
+                setErrorGroup(true);
+                setHelperTextGroup("Please enter your correct Group-Nr.");
+            }
+            }
         else{
             window.results.id = document.getElementById("id-input").value;
+            window.results.group = document.getElementById("group-input").value;
             setOpen(false);
         }
     };
@@ -34,7 +45,7 @@ export default function FormDialog({open, setOpen}) {
                 <DialogTitle id="form-dialog-title">Welcome to the Ernsting's family online shop!</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-              Before starting, please enter your prolific ID here and click on "Go!".
+              Before starting, please enter your prolific ID and Group number here and click on "Go!".
                     </DialogContentText>
                     <TextField
                         autoFocus
@@ -46,6 +57,18 @@ export default function FormDialog({open, setOpen}) {
                         onChange={event => setText(event.target.value )}
                         error={error}
                         helperText={helperText}
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="group-input"
+                        label="GROUP-NUMBER"
+                        type="id"
+                        value={textGroup}
+                        onChange={event => setTextGroup(event.target.value)}
+                        error={errorGroup}
+                        helperText={helperTextGroup}
                         fullWidth
                     />
                     <DialogContentText>
