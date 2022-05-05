@@ -20,6 +20,38 @@ window.results = {
     group: null,
     startTime: new Date()
 };
+window.GROUPS = {
+    ANFLVF:0,
+    WBXIPB:1,
+    NQQIPD:2,
+    LLIBWR:3,
+    UMUCAF:4,
+    PXAMYY:5,
+    ZUWTNW:6,
+    LFXPVV:7,
+    PRJJGN:8,
+    DHHDTV:9,
+    GWUVLU:10,
+    KTIHKA:11,
+    IVFQNT:12,
+    VSABJG:13,
+    IBVAUJ:14,
+    AZDWTR:15,
+    KXXNMZ:16,
+    OACIJP:17,
+    UYKREI:18,
+    WBDUWM:19,
+    WVXFNB:20,
+    ETUZIS:21,
+    LHOUNM:22,
+    WDQGIM:23,
+    GYJYZG:24,
+    SCEFYK:25,
+    SIPLQW:26,
+    BIQOOT:27,
+    NGLRPX:28,
+    NSDJPY:29
+};
 const App = () => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [products, setProducts] = useState([]);
@@ -35,38 +67,6 @@ const App = () => {
             xl: false,
             sustainable: false
     });
-    const GROUPS = {
-        ANFLVF:0,
-        WBXIPB:1,
-        NQQIPD:2,
-        LLIBWR:3,
-        UMUCAF:4,
-        PXAMYY:5,
-        ZUWTNW:6,
-        LFXPVV:7,
-        PRJJGN:8,
-        DHHDTV:9,
-        GWUVLU:10,
-        KTIHKA:11,
-        IVFQNT:12,
-        VSABJG:13,
-        IBVAUJ:14,
-        AZDWTR:15,
-        KXXNMZ:16,
-        OACIJP:17,
-        UYKREI:18,
-        WBDUWM:19,
-        WVXFNB:20,
-        ETUZIS:21,
-        LHOUNM:22,
-        WDQGIM:23,
-        GYJYZG:24,
-        SCEFYK:25,
-        SIPLQW:26,
-        BIQOOT:27,
-        NGLRPX:28,
-        NSDJPY:29
-    };
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -182,20 +182,18 @@ const App = () => {
 
     const adjustPrices = (products) => {
 
-        var priceAdjustment, priceAdjustmentFactors;
+        var priceAdjustment, priceAdjustmentFactors, productAttributes;
         var groupNR = getGroupNR(window.results.group);
         // While there remain elements to shuffle...
         products.map(product => {
-            if(product.attributes) {
-                priceAdjustmentFactors = extractValues(product.attributes[0].value);
-            } else {
-                priceAdjustmentFactors = extractValues(product.sku);
+            product.attributes ? productAttributes = product.attributes[0].value : productAttributes = product.sku;
+            if(productAttributes.includes("S")) {
+                priceAdjustmentFactors = extractValues(productAttributes);
+                priceAdjustment = priceAdjustmentFactors[2] / (product.price.raw - (product.price.raw - priceAdjustmentFactors[2]) * priceAdjustmentFactors[1]);
+                product.price.raw = roundPrice(product.price.raw + (product.price.raw * priceAdjustment * (groupNR - 1) * priceAdjustmentFactors[0]));
+                product.price.formatted = product.price.raw.toString();
             }
-            priceAdjustment = priceAdjustmentFactors[2] / (product.price.raw-(product.price.raw-priceAdjustmentFactors[2])*priceAdjustmentFactors[1]);
-            product.price.raw = roundPrice(product.price.raw+(product.price.raw*priceAdjustment*(groupNR-1)*priceAdjustmentFactors[0]));
-            product.price.formatted = product.price.raw.toString();
         });
-
         return products;
     };
 
@@ -207,7 +205,7 @@ const App = () => {
     };
 
     const getGroupNR = (groupID) => {
-      return GROUPS[groupID];
+      return window.GROUPS[groupID];
     };
 
     const addDotFirstSpot = (string) => {
@@ -228,7 +226,10 @@ const App = () => {
 
     const roundPrice = (num) => {
         var m = Number((Math.abs(num) * 100).toPrecision(15));
-        return Math.round(m) / 100 * Math.sign(num);
+        return roundOnCleanNumber(Math.round(m) / 100 * Math.sign(num));
+    };
+    const roundOnCleanNumber = (num) => {
+      return Math.round(num*2)/2 - 0.01;
     };
 
     useEffect(() => {

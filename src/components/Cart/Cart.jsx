@@ -32,8 +32,12 @@ const Cart = ({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) => {
                 subtotal+=item.price.raw*item.quantity;
                 //   return commerce.products.retrieve(item.product_id);
             });
-            setSubtotal(subtotal);
+            setSubtotal(roundPrice(subtotal));
         }
+    };
+    const roundPrice = (num) => {
+        var m = Number((Math.abs(num) * 100).toPrecision(15));
+        return Math.round(m) / 100 * Math.sign(num);
     };
     const renderEmptyCart = () => (
         <div>
@@ -101,7 +105,7 @@ const Cart = ({cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart}) => {
             var jsonObj = {
                 participant_id: window.results.id,
                 group_id: window.results.group,
-                product_id:cart.line_items[i].id,
+                product_id:cart.line_items[i].sku,
                 product_qnty:cart.line_items[i].quantity,
                 product_price:cart.line_items[i].price.raw,
                 startTime: window.results.startTime,

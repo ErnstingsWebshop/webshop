@@ -29,7 +29,7 @@
     /* Fade in tooltip */
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
-    transition-delay: 1s;
+    transition-delay: 0.3s;
 }
 
 /* Tooltip arrow */

@@ -22,12 +22,12 @@ export default function FormDialog({open, setOpen}) {
     };
 
     const handleClose = () => {
-        if(text.length < 10 || textGroup.length !== 6) {
+        if(text.length < 10 || window.GROUPS[textGroup] === undefined) {
             if(text.length < 10){
             setError(true);
             setHelperText("Please enter your correct ID.");
             }
-            if(textGroup.length !== 6){
+            if(window.GROUPS[textGroup] === undefined){
                 setErrorGroup(true);
                 setHelperTextGroup("Please enter your correct Group-Nr.");
             }
