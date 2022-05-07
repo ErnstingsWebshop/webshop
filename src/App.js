@@ -190,7 +190,7 @@ const App = () => {
             if(productAttributes.includes("S")) {
                 priceAdjustmentFactors = extractValues(productAttributes);
                 priceAdjustment = priceAdjustmentFactors[2] / (product.price.raw - (product.price.raw - priceAdjustmentFactors[2]) * priceAdjustmentFactors[1]);
-                product.price.raw = roundPrice(product.price.raw + (product.price.raw * priceAdjustment * (groupNR - 1) * priceAdjustmentFactors[0]));
+                product.price.raw = roundPrice(product.price.raw + (product.price.raw * priceAdjustment * groupNR * priceAdjustmentFactors[0]), priceAdjustmentFactors[3]);
                 product.price.formatted = product.price.raw.toString();
             }
         });
@@ -224,12 +224,19 @@ const App = () => {
         return floatNumber;
     };
 
-    const roundPrice = (num) => {
+    const roundPrice = (num, increment) => {
         var m = Number((Math.abs(num) * 100).toPrecision(15));
-        return roundOnCleanNumber(Math.round(m) / 100 * Math.sign(num));
+        if(increment === 0.49){
+            return roundOnFourtynine(Math.round(m) / 100 * Math.sign(num));
+        } else {
+            return roundOnNinetynine(Math.round(m) / 100 * Math.sign(num));
+        }
     };
-    const roundOnCleanNumber = (num) => {
+    const roundOnFourtynine = (num) => {
       return Math.round(num*2)/2 - 0.01;
+    };
+    const roundOnNinetynine = (num) => {
+        return Math.round(num) - 0.01;
     };
 
     useEffect(() => {
